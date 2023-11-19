@@ -2,19 +2,28 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 )
 
 func main() {
 
-	go cooking("rice")
-	go cooking("curry")
-	time.Sleep(time.Second*10)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	wg.Add(1)
+	// wait.Add(2)
+
+	go cooking("rice", &wg)
+	go cooking("curry", &wg)
+	// time.Sleep(time.Second*10)
+
+	wg.Wait()
 
 }
-func cooking(msg string) {
+func cooking(msg string, wg *sync.WaitGroup) {
 	for i := 0; i < 5; i++ {
 		fmt.Println(msg, i)
 		time.Sleep(time.Second)
 	}
+	wg.Done()
 }
