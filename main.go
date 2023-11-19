@@ -9,7 +9,7 @@ func main() {
 
 	go cooking("rice")
 	go cooking("curry")
-	// time.Sleep(time.Second*10)
+	time.Sleep(time.Second*10)
 
 }
 func cooking(msg string) {
