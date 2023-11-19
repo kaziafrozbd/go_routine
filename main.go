@@ -8,7 +8,7 @@ import (
 func main() {
 
 	go cooking("rice")
-	cooking("curry")
+	go cooking("curry")
 	// time.Sleep(time.Second*10)
 
 }
